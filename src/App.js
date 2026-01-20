@@ -8,7 +8,7 @@ function App() {
    const items = Array.from({ length: 3 }, () => ({
       // Array.from creates a new array
       id: faker.datatype.uuid(),
-      label: faker.lorem.sentence(),
+      label: faker.lorem.sentence() + "?",
       content: faker.lorem.paragraph(),
    }));
 
