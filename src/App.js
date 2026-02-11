@@ -1,18 +1,33 @@
-import faker from "faker";
+import { useState } from "react";
 
-import Accordion from "./components/Accordion";
+import Dropdown from "./components/Dropdown";
 
 function App() {
-   faker.seed(3); // used for static data
+   const [selectOption, setSelectOption] = useState(null);
 
-   const items = Array.from({ length: 3 }, () => ({
-      // Array.from creates a new array
-      id: faker.datatype.uuid(),
-      label: faker.lorem.sentence() + "?",
-      content: faker.lorem.paragraph(),
-   }));
+   const handleSelect = (option) => {
+      setSelectOption(option);
+   };
 
-   return <Accordion items={items} />;
+   const options = [
+      { label: "Red", value: "red" },
+      { label: "Green", value: "green" },
+      { label: "Blue", value: "blue" },
+   ];
+   return (
+      <div className="flex">
+         <Dropdown
+            options={options}
+            value={selectOption}
+            onChange={handleSelect}
+         />
+         {/* <Dropdown
+            options={options}
+            value={selectOption}
+            onChange={handleSelect}
+         /> */}
+      </div>
+   );
 }
 
 export default App;
