@@ -1,3 +1,4 @@
+import faker from "faker";
 import { useState } from "react";
 
 import Modal from "../components/Modal";
@@ -10,12 +11,30 @@ function ModalPage() {
       setShowModal(!showModal);
    };
 
+   const modal = (
+      <Modal
+         onClose={handleClick}
+         actionBar={
+            <div>
+               <Button primary onClick={handleClick}>
+                  I accept
+               </Button>
+            </div>
+         }
+      >
+         <p>This is an important agreement for you to accept</p>
+      </Modal>
+   );
+
+   const dummyTexts = faker.lorem.paragraphs(30);
+
    return (
       <div>
+         {showModal && modal}
          <Button primary onClick={handleClick}>
             Open Modal
          </Button>
-         {showModal && <Modal onClose={handleClick} />}
+         <p>{dummyTexts}</p>
       </div>
    );
 }

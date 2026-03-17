@@ -1,14 +1,26 @@
+import { useEffect } from "react";
 import { createPortal } from "react-dom";
 
-function Modal({ onClose }) {
+function Modal({ onClose, children, actionBar }) {
+   useEffect(() => {
+      document.body.classList.add("overflow-hidden");
+
+      return () => {
+         document.body.classList.remove("overflow-hidden");
+      };
+   }, []);
+
    return createPortal(
       <div>
          <div
-            className="absolute inset-0 bg-gray-300 opacity-80"
+            className="fixed inset-0 bg-gray-300 opacity-80"
             onClick={onClose}
          ></div>
-         <div className="absolute inset-x-40 inset-y-60 p-10 bg-white">
-            I am a Modal!!
+         <div className="fixed inset-x-40 inset-y-60 p-10 bg-white">
+            <div className="flex flex-col justify-between h-full">
+               {children}
+               <div className="flex justify-end">{actionBar}</div>
+            </div>
          </div>
       </div>,
       document.querySelector(".modal-container"),
