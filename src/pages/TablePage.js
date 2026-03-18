@@ -9,9 +9,10 @@ function TablePage() {
    ];
 
    const config = [
-      { label: "Name of Fruit", render: (fruit) => fruit.name },
+      { label: "Name", render: (fruit) => fruit.name },
       { label: "Color", render: (fruit) => fruit.color },
       { label: "Score", render: (fruit) => fruit.score },
+      { label: "Score Squared", render: (fruit) => fruit.score ** 2 },
    ];
 
    return (

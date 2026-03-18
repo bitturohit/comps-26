@@ -1,14 +1,24 @@
 function Table({ data, config }) {
    const renderedHeaders = config.map((column) => {
-      return <th key={column.label}>{column.label}</th>;
+      return (
+         <th key={column.label} className="p-2">
+            {column.label}
+         </th>
+      );
    });
 
    const renderedRows = data.map((fruit) => {
+      const renderedCells = config.map((column) => {
+         return (
+            <td key={column.label} className="p-2">
+               {column.render(fruit)}
+            </td>
+         );
+      });
+
       return (
          <tr key={fruit.name} className="border-b border-gray-200">
-            <td className="p-3">{config[0].render(fruit)}</td>
-            <td className="p-3">{config[1].render(fruit)}</td>
-            <td className="p-3">{config[2].render(fruit)}</td>
+            {renderedCells}
          </tr>
       );
    });
