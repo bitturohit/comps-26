@@ -1,4 +1,4 @@
-function Table({ data, config }) {
+function Table({ data, config, keyFn }) {
    const renderedHeaders = config.map((column) => {
       return (
          <th key={column.label} className="p-2">
@@ -7,17 +7,17 @@ function Table({ data, config }) {
       );
    });
 
-   const renderedRows = data.map((fruit) => {
+   const renderedRows = data.map((rowData) => {
       const renderedCells = config.map((column) => {
          return (
             <td key={column.label} className="p-2">
-               {column.render(fruit)}
+               {column.render(rowData)}
             </td>
          );
       });
 
       return (
-         <tr key={fruit.name} className="border-b border-gray-200">
+         <tr key={keyFn(rowData)} className="border-b border-gray-200">
             {renderedCells}
          </tr>
       );
