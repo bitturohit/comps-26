@@ -1,7 +1,13 @@
-function Table({ data, config, keyFn }) {
+import { Fragment } from "react";
+
+function Table({ data, config, keyFn, header }) {
    const renderedHeaders = config.map((column) => {
+      if (column.header) {
+         return <Fragment key={column.label}>{column.header()}</Fragment>;
+      }
+
       return (
-         <th key={column.label} className="p-2">
+         <th key={column.label} className="px-2">
             {column.label}
          </th>
       );
@@ -10,7 +16,7 @@ function Table({ data, config, keyFn }) {
    const renderedRows = data.map((rowData) => {
       const renderedCells = config.map((column) => {
          return (
-            <td key={column.label} className="p-2">
+            <td key={column.label} className="p-2 text-center">
                {column.render(rowData)}
             </td>
          );

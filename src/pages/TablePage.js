@@ -14,7 +14,11 @@ function TablePage() {
          label: "Color",
          render: (fruit) => <div className={`p-3 m-2 ${fruit.color}`} />,
       },
-      { label: "Score", render: (fruit) => fruit.score },
+      {
+         label: "Score",
+         render: (fruit) => fruit.score,
+         header: () => <th className="bg-red-300 px-2">Score</th>,
+      },
       { label: "Score Squared", render: (fruit) => fruit.score ** 2 },
    ];
 
