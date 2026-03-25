@@ -1,6 +1,12 @@
 import Link from "./Link";
 
+/**
+ * Sidebar navigation component.
+ * Renders a vertical list of navigation links for different demo pages.
+ * Uses a custom <Link> component to handle client-side navigation and active state styling.
+ */
 function SideBar() {
+   // Define navigation items with labels and corresponding route paths
    const links = [
       { label: "Dropdown", path: "/" },
       { label: "Accordion", path: "/accordion" },
@@ -9,6 +15,7 @@ function SideBar() {
       { label: "Table", path: "/table" },
    ];
 
+   // Map over links array to generate <Link> components dynamically
    const renderedLinks = links.map((link) => {
       return (
          <Link
@@ -23,6 +30,7 @@ function SideBar() {
    });
 
    return (
+      // Sidebar container: sticky positioning keeps it visible during scroll
       <div className="sticky top-0 overflow-y-auto flex flex-col items-start">
          {renderedLinks}
       </div>
