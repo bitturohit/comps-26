@@ -1,4 +1,5 @@
 import Sortabletable from "../components/SortableTable";
+import Table from "../components/Table";
 
 function TablePage() {
    const data = [
@@ -6,6 +7,7 @@ function TablePage() {
       { name: "Apple", color: "bg-red-500", score: 3 },
       { name: "Banana", color: "bg-yellow-300", score: 1 },
       { name: "Lime", color: "bg-green-200", score: 4 },
+      { name: "Cherry", color: "bg-red-700", score: 7 },
    ];
 
    const config = [
@@ -33,6 +35,7 @@ function TablePage() {
 
    return (
       <div>
+         <Table data={data} config={config} keyFn={keyFn} />
          <Sortabletable data={data} config={config} keyFn={keyFn} />
       </div>
    );
