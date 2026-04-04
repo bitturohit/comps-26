@@ -1,7 +1,13 @@
 import Sortabletable from "../components/SortableTable";
 import Table from "../components/Table";
 
+/**
+ * TablePage component.
+ * Demonstrates usage of reusable Table and SortableTable components
+ * using configuration-driven column definitions.
+ */
 function TablePage() {
+   // Sample dataset for table rendering
    const data = [
       { name: "Orange", color: "bg-orange-500", score: 5 },
       { name: "Apple", color: "bg-red-500", score: 3 },
@@ -10,6 +16,10 @@ function TablePage() {
       { name: "Cherry", color: "bg-red-700", score: 7 },
    ];
 
+   /**
+    * Column configuration describing how each field should be rendered.
+    * sortValue enables sorting support in SortableTable.
+    */
    const config = [
       {
          label: "Name",
@@ -29,13 +39,16 @@ function TablePage() {
       { label: "Score Squared", render: (fruit) => fruit.score ** 2 },
    ];
 
+   // Key function for unique row identification
    const keyFn = (fruit) => {
       return fruit.name;
    };
 
    return (
       <div>
+         {/* Basic table rendering */}
          <Table data={data} config={config} keyFn={keyFn} />
+         {/* Table with sorting functionality */}
          <Sortabletable data={data} config={config} keyFn={keyFn} />
       </div>
    );

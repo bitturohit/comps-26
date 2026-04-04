@@ -1,7 +1,17 @@
 import { Fragment } from "react";
 
+/**
+ * Generic Table component driven by configuration.
+ *
+ * Props:
+ * - data: array of objects representing row data
+ * - config: column definitions controlling rendering and behavior
+ * - keyFn: function to generate unique row keys
+ */
 function Table({ data, config, keyFn }) {
+   // Build table headers from config
    const renderedHeaders = config.map((column) => {
+      // Allows custom header rendering when provided
       if (column.header) {
          return <Fragment key={column.label}>{column.header()}</Fragment>;
       }
@@ -13,6 +23,7 @@ function Table({ data, config, keyFn }) {
       );
    });
 
+   // Build table rows dynamically based on config render functions
    const renderedRows = data.map((rowData) => {
       const renderedCells = config.map((column) => {
          return (

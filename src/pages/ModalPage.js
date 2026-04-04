@@ -4,7 +4,9 @@ import { useState } from "react";
 import Modal from "../components/Modal";
 import Button from "../components/Button";
 
+//Demonstrates usage of the Modal component with an action bar and dummy text content.
 function ModalPage() {
+   // Controls modal visibility
    const [showModal, setShowModal] = useState(false);
 
    const handleClick = () => {
@@ -26,6 +28,7 @@ function ModalPage() {
       </Modal>
    );
 
+   // Generates long placeholder content to demonstrate modal overlay behavior
    const dummyTexts = faker.lorem.paragraphs(30);
 
    return (

@@ -2,6 +2,12 @@ import PropTypes from "prop-types";
 import classNames from "classnames";
 import { twMerge } from "tailwind-merge";
 
+/**
+ * Reusable Button component supporting multiple visual variants.
+ *
+ * Variant props (primary, secondary, success, warning, danger) are mutually exclusive.
+ * Uses classNames + tailwind-merge to conditionally compose Tailwind styles safely.
+ */
 function Button({
    children,
    primary,
@@ -13,6 +19,7 @@ function Button({
    rounded,
    ...rest
 }) {
+   // Dynamically build Tailwind classes based on variant props
    const classes = twMerge(
       classNames(
          rest.className,
@@ -24,6 +31,7 @@ function Button({
             "bg-yellow-500 border-yellow-600 text-white": warning,
             "bg-red-500 border-red-600 text-white": danger,
             "rounded-full": rounded,
+            // Outline overrides background styles
             "bg-white": outline,
             "text-blue-500": outline && primary,
             "text-gray-900": outline && secondary,
@@ -41,6 +49,7 @@ function Button({
    );
 }
 
+// Ensures only one variant prop is provided at a time.
 Button.propTypes = {
    checkvariationvalue: ({ primary, secondary, success, warning, danger }) => {
       const count =

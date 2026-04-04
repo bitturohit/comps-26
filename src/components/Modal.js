@@ -1,7 +1,18 @@
 import { useEffect } from "react";
 import { createPortal } from "react-dom";
 
+/**
+ * Modal component rendered using React Portal.
+ *
+ * Prevents background scrolling while open and renders outside the normal DOM hierarchy.
+ *
+ * Props:
+ * - onClose: callback triggered when backdrop is clicked
+ * - children: main modal content
+ * - actionBar: footer section (typically action buttons)
+ */
 function Modal({ onClose, children, actionBar }) {
+   // Disable background scroll while modal is open
    useEffect(() => {
       document.body.classList.add("overflow-hidden");
 
@@ -12,10 +23,12 @@ function Modal({ onClose, children, actionBar }) {
 
    return createPortal(
       <div>
+         {/* Backdrop overlay */}
          <div
             className="fixed inset-0 bg-gray-300 opacity-80"
             onClick={onClose}
          ></div>
+         {/* Modal content container */}
          <div className="fixed inset-x-40 inset-y-60 p-10 bg-white">
             <div className="flex flex-col justify-between h-full">
                {children}
@@ -23,6 +36,7 @@ function Modal({ onClose, children, actionBar }) {
             </div>
          </div>
       </div>,
+      // Render modal into dedicated DOM node
       document.querySelector(".modal-container"),
    );
 }

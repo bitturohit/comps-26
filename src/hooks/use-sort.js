@@ -1,16 +1,25 @@
 import { useState } from "react";
 
+/**
+ * Hook that provides sorting logic for config-driven tables.
+ *
+ * Sorting cycles through: asc → desc → none.
+ * Uses column.sortValue to determine how values should be compared.
+ */
 function useSort(data, config) {
    const [sortOrder, setSortOrder] = useState(null);
    const [sortBy, setSortBy] = useState(null);
 
+   // Updates sorting state based on selected column.
    const sortColumn = (label) => {
+      // Reset to ascending when switching to a different column
       if (sortBy && label !== sortBy) {
          setSortOrder("asc");
          setSortBy(label);
          return;
       }
 
+      // Cycle sorting state for same column
       if (sortOrder === null) {
          setSortOrder("asc");
          setSortBy(label);
@@ -25,6 +34,7 @@ function useSort(data, config) {
 
    let sortedData = data;
    if (sortOrder && sortBy) {
+      // Retrieve column-specific sort function
       const { sortValue } = config.find((column) => column.label === sortBy);
       const reverseOrder = sortOrder === "asc" ? 1 : -1;
 

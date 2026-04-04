@@ -2,6 +2,9 @@ import { GoBell, GoCloudDownload, GoDatabase } from "react-icons/go";
 
 import Button from "../components/Button";
 
+/**
+ * Demonstrates usage of the reusable Button component with different variants and icons.
+ */
 function ButtonPage() {
    const handleClick = () => {
       console.log("Click!!");

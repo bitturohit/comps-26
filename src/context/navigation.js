@@ -1,10 +1,17 @@
 import { createContext, useState, useEffect } from "react";
 
+/**
+ * Provides client-side navigation state without full page reload.
+ *
+ * Tracks currentPath and exposes navigate function to update URL
+ * using browser history API.
+ */
 const NavigationContext = createContext();
 
 function NavigationProvider({ children }) {
    const [currentPath, setCurrentPath] = useState(window.location.pathname);
 
+   // Listen for browser back/forward navigation
    useEffect(() => {
       const handler = () => {
          setCurrentPath(window.location.pathname);
@@ -16,6 +23,7 @@ function NavigationProvider({ children }) {
       };
    }, []);
 
+   // Updates URL and syncs navigation state.
    const navigate = (to) => {
       window.history.pushState({}, "", to);
       setCurrentPath(to);
